@@ -5,11 +5,13 @@
 	// 바로 로그인 완료창으로 보내주기 위해 작성할 부분입니다.
 	// "user_id" 쿠키 존재 여부를 따져서 리다이렉트 시킵니다.
 	Cookie[] cookies = request.getCookies();
+
+	Thread.sleep(200);
+
 	for(Cookie c: cookies){
-		String s = c.getName();
-		if(s.equals("user_id")){
+		String cookieName = c.getName();
+		if(cookieName.equals("user_id")){
 			response.sendRedirect("cookie_welcome.jsp");
-			break;
 		}
 	}
 	// 만약 아이디/비밀번호 기억하기가 체크되어 있는 경우
