@@ -5,7 +5,7 @@
 	String idSession = (String)session.getAttribute("s_id");
 
 	if(idSession != null){
-		response.sendRedirect("user_login_ok.jsp");
+		response.sendRedirect("user_logout.jsp");
 	}
 %>
 

@@ -19,7 +19,7 @@
 	// VO객체 생성 및 uid, upw, uname, email setter로 입력해주기
 	UsersVO user = new UsersVO(uid, upw, uname, email);
 	
-	dao.joinUsers(user);
+	dao.usersJoin(user);
 %>
 <!DOCTYPE html>
 <html>

@@ -1,47 +1,33 @@
+<%@page import="kr.co.ictedu.UsersVO"%>
+<%@page import="kr.co.ictedu.UsersDAO"%>
 <%@ page import="java.sql.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	response.setCharacterEncoding("utf-8");
+	request.setCharacterEncoding("utf-8");
+	
 	String upw = request.getParameter("pw");
-	String s_pw = (String)session.getAttribute("s_pw");
 	String s_id = (String)session.getAttribute("s_id");
-
-	Connection con = null;
-	PreparedStatement pstmt = null;
-	try{
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		String url = "jdbc:mysql://localhost/ict03";
-		con = DriverManager.getConnection(url, "root", "mysql");
-		
-		
-		if(s_pw.equals(upw)){
-			String sql = "DELETE FROM users WHERE uid=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, s_id);
-			pstmt.executeUpdate();
-			// 세션 파기는 두 번 실행할 수 없으므로
-			// 로직당 한 번만 실행되도록 배치한다.
-			session.invalidate();
-		} else {
-			session.invalidate();
-			response.sendRedirect("user_logout.jsp");
-		}
-		
-	} catch(SQLException e){
-		System.out.println("에러 : " + e);
-	} finally {
-		try{
-			if(con != null && !con.isClosed()){
-				con.close();
-			}
-			if(pstmt != null && !pstmt.isClosed()){
-				pstmt.close();
-			}
-		} catch(SQLException e){
-			e.printStackTrace();
-		}
+	String s_pw = (String)session.getAttribute("s_pw");
+	
+	// 1. DAO를 생성하고
+	UsersDAO dao = UsersDAO.getInstance();
+	// 2. UsersVO를 생성하되, spw, sessionId만 setter로 넣어주세요.
+	UsersVO user = new UsersVO();
+	user.setUid(s_id);
+	user.setUpw(s_pw);
+	// 3. DAO의 deleteUsers 기능을 호출하면서 파라미터로 적절한 자료를
+	// 넘겨주세요.
+	int deleteResultNum = dao.usersDelete(user, upw);
+	System.out.println(deleteResultNum);
+	
+	if(deleteResultNum == 0){
+		session.invalidate();
+		response.sendRedirect("user_logout.jsp");
+	} else if(deleteResultNum == 1){
+		session.invalidate();
 	}
-	// DELETE구문이 실행된것과는 별개로 session은 따로 말소시켜야 합니다.
 %>
 <!DOCTYPE html>
 <html>
