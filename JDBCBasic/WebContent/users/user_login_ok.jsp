@@ -35,8 +35,6 @@
 		} else if(loginResultNum == 1) {
 			session.setAttribute("s_id", uid);
 			session.setAttribute("s_pw", upw);
-			session.setAttribute("s_name", uname);
-			session.setAttribute("s_email", email);
 		}
 	}
 %>
@@ -49,6 +47,8 @@
 <body>
 	<p><%= uid %>님 환영합니다.</p>
 	<h3>로그인을 완료하였습니다.</h3>
+	<h3><a href="user_get_all.jsp">회원 전체 목록 보기</a></h3>
+	<h3><a href="user_info.jsp">내 정보</a></h3>
 	<h3><a href="user_logout.jsp">로그아웃</a></h3>
 	<h3><a href="user_update_form.jsp">회원수정하기</a></h3>
 	<h3><a href="user_delete_form.jsp">회원탈퇴</a></h3>
