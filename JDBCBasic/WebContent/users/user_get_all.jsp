@@ -55,13 +55,12 @@
 		<%-- JSTL 적용 버전 
 		forEach 구문은 반복문이고, Items에 향상된 for문의 우측요소
 		그리고 var에 왼쪽 요소를 집어넣어주면 됩니다.--%>
-			<c:forEach var="user" items="${userList}">
+			<c:forEach var="user" items="<%= userList %>">
 				<tr>
 					<td>${user.uid }</td>
 					<td>${user.uname }</td>
 					<td>${user.email }</td>
 				</tr>
-				
 			</c:forEach>
 		</tbody>
 	</table>
