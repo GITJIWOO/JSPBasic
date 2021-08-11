@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시글 목록</title>
 </head>
 <body>
 	<h1>게시글 목록</h1>
@@ -24,12 +24,13 @@
 		<c:forEach var="list" items="${boardList}">
 			<tr>
 				<td>${list.bId}</td>
-				<td><a href="#">${list.bTitle}</a></td>
+				<td><a href="/MyFirstWeb/boarddetail.do?bId=${list.bId }">${list.bTitle}</a></td>
 				<td>${list.bName}</td>
 				<td>${list.bDate}</td>
 				<td>${list.bHit}</td>
 			</tr>
 		</c:forEach>
 	</table>
+	<a href="/MyFirstWeb/board/board_write_form.jsp">글쓰기</a>
 </body>
 </html>

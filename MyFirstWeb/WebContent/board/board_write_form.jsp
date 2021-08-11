@@ -9,7 +9,7 @@
 <body>
 	<h1>글쓰기 창</h1>
 	<!-- 내부에 글쓰기 폼을 생성해주세요.
-		타겟 주소는 /MyFirstWeb/write.do 입니다. -->
+		타겟 주소는 /MyFirstWeb/boarwrite.do 입니다. -->
 	<form action="/MyFirstWeb/boardwrite.do" method="post">
 		<table border="1">
 			<tr>

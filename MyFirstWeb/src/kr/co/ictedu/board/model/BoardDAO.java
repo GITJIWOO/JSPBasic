@@ -10,6 +10,9 @@ import javax.sql.DataSource;
 
 public class BoardDAO {
 	
+	private int SUCCESS = 1;
+	private int FAIL = 0;
+	
 	// 싱글턴 패턴과 커넥션 풀을 적용해서
 	// DAO의 연결부(생성자, getInstance())까지 작성해주세요.
 	private DataSource ds;
@@ -38,8 +41,6 @@ public class BoardDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
-		int resultCode;
-		
 		// 구문 작성
 		// bId는 auto_increment가 뭍어있으므로 입력은 필요없다.
 		// bName, btitle, bContent는 폼에서 날려준 걸 넣는다.
@@ -59,10 +60,9 @@ public class BoardDAO {
 			
 			pstmt.executeUpdate();
 			
-			resultCode = 1;
+			return SUCCESS;
 		} catch(Exception e) {
 			e.printStackTrace();
-			resultCode = 0;
 		} finally {
 	 		try {
 	 			if(con != null && !con.isClosed()) {
@@ -75,7 +75,7 @@ public class BoardDAO {
 	 			e.printStackTrace();
 	 		}
 		}
-		return resultCode;
+		return FAIL;
 	} // end write
 	
 	// 모든 게이글의 정보를 DB로부터 얻어올 메서드
@@ -172,4 +172,68 @@ public class BoardDAO {
 		}
 		return board;
 	} // end getBoardDetail
+	
+	public int deleteboard(String bId) {
+		// bId에 해당하는 글 정보를 가져와서 리턴하도록 로직을 작성해주세요.
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "DELETE FROM jspboard WHERE bid=?";
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bId);
+			pstmt.executeUpdate();
+			
+			return SUCCESS;
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+	 		try {
+	 			if(con != null && !con.isClosed()) {
+	 				con.close();
+	 			}
+	 			if(pstmt != null && !pstmt.isClosed()) {
+	 				pstmt.close();
+	 			}
+	 		} catch (Exception e){
+	 			e.printStackTrace();
+	 		}
+		}
+		return FAIL;
+	} // end deleteboard
+	
+	public int boardUpdate(BoardVO board) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "UPDATE jspboard SET bHit=?, bDate=?, bName=?, btitle=?, bcontent=? WHERE bid=?";
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, board.getbHit());
+			pstmt.setTimestamp(2, board.getbDate());
+			pstmt.setString(3, board.getbName());
+			pstmt.setString(4, board.getbTitle());
+			pstmt.setString(5, board.getbContent());
+			pstmt.setLong(6, board.getbId());
+			pstmt.executeUpdate();
+			
+			return SUCCESS;
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+	 		try {
+	 			if(con != null && !con.isClosed()) {
+	 				con.close();
+	 			}
+	 			if(pstmt != null && !pstmt.isClosed()) {
+	 				pstmt.close();
+	 			}
+	 		} catch (Exception e){
+	 			e.printStackTrace();
+	 		}
+		}
+		return FAIL;
+	} // end boardUpdate
 }
