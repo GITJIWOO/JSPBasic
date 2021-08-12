@@ -10,39 +10,39 @@
 <body>
 	<h1>수정 창</h1>
 	<form action="http://localhost:8181/MyFirstWeb/boardupdateok.do" method="post">
-		<input type="hidden" value="${boardDetail.bId }" name="bId" />
-		<input type="hidden" value="${boardDetail.bHit }" name="bHit" />
-		<input type="hidden" value="${boardDetail.bDate }" name="bDate" />
-		<input type="hidden" value="${boardDetail.bName }" name="bName" />
+		<input type="hidden" value="${board.bId }" name="bId" />
+		<input type="hidden" value="${board.bHit }" name="bHit" />
+		<input type="hidden" value="${board.bDate }" name="bDate" />
+		<input type="hidden" value="${board.bName }" name="bName" />
 		<!-- hidden 태그를 이용해 나머지 요소들도 다 첨부해주세요. -->
 		<table border="1">
 			<tr>
 				<th>글 번호</th>
-				<td>${boardDetail.bId }</td>
+				<td>${board.bId }</td>
 				<th>조회수</th>
-				<td>${boardDetail.bHit }</td>
+				<td>${board.bHit }</td>
 			</tr>
 			<tr>
 				<th>쓴 날짜</th>
-				<td>${boardDetail.bDate }</td>
+				<td>${board.bDate }</td>
 			</tr>
 			<tr>
 				<th>글 쓴이</th>
-				<td>${boardDetail.bName }</td>
+				<td>${board.bName }</td>
 			</tr>
 			<tr>
 				<th>글 제목</th>
-				<td><input type="text" name="bTitle" value="${boardDetail.bTitle }"></td>
+				<td><input type="text" name="bTitle" value="${board.bTitle }"></td>
 			</tr>
 			<tr>
 				<th>글 내용</th>
-				<td><textarea rows="10" cols="50" name="bContent">${boardDetail.bContent }</textarea></td>
+				<td><textarea rows="10" cols="50" name="bContent">${board.bContent }</textarea></td>
 			</tr>
 			<tr>
 				<td>
 					<input type="submit" value="수정" />
 					<input type="reset" />
-					<a href="/MyFirstWeb/boarddetail.do?bId=${boardDetail.bId }"><input type="button" value="돌아가기"></a>
+					<a href="/MyFirstWeb/boarddetail.do?bId=${board.bId }"><input type="button" value="돌아가기"></a>
 				</td>
 			</tr>
 		</table>

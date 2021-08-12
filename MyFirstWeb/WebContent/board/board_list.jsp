@@ -31,6 +31,15 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<a href="/MyFirstWeb/board/board_write_form.jsp">글쓰기</a>
+	<br/>
+	<form action="/MyFirstWeb/board/board_write_form.jsp" method="post">
+		<input type="hidden" name="logout">
+		<input type="submit" value="글쓰기">
+	</form>
+	<br/>
+	<form action="/MyFirstWeb/userlogout.do" method="post">
+		<input type="hidden" name="logout">
+		<input type="submit" value="로그아웃">
+	</form>
 </body>
 </html>

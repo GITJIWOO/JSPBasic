@@ -11,25 +11,25 @@
 	<table border="1">
 		<tr>
 			<th>글 번호</th>
-			<td>${boardDetail.bId }</td>
+			<td>${board.bId }</td>
 			<th>조회수</th>
-			<td>${boardDetail.bHit }</td>
+			<td>${board.bHit }</td>
 		</tr>
 		<tr>
 			<th>쓴 날짜</th>
-			<td>${boardDetail.bDate }</td>
+			<td>${board.bDate }</td>
 		</tr>
 		<tr>
 			<th>글 쓴이</th>
-			<td>${boardDetail.bName }</td>
+			<td>${board.bName }</td>
 		</tr>
 		<tr>
 			<th>글 제목</th>
-			<td>${boardDetail.bTitle }</td>
+			<td>${board.bTitle }</td>
 		</tr>
 		<tr>
 			<th>글 내용</th>
-			<td><textarea rows="10" cols="50" name="content" readonly> ${boardDetail.bContent }</textarea></td>
+			<td><textarea rows="10" cols="50" name="content" readonly> ${board.bContent }</textarea></td>
 		</tr>
 		<tr>
 			<td>
@@ -37,11 +37,11 @@
 					<input type="button" value="목록">
 				</a>
 				<form action="/MyFirstWeb/boarddelete.do" method="post">
-					<input type="hidden" value="${boardDetail.bId }" name="bId" />
+					<input type="hidden" value="${board.bId }" name="bId" />
 					<input type="submit" value="삭제" />
 				</form>
 				<form action="/MyFirstWeb/boardupdate.do">
-					<input type="hidden" value="${boardDetail.bId }" name="bId" />
+					<input type="hidden" value="${board.bId }" name="bId" />
 					<input type="submit" value="수정" />
 				</form>
 			</td>

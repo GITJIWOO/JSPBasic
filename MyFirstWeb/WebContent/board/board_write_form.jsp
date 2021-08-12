@@ -30,5 +30,9 @@
 			</tr>
 		</table>
 	</form>
+	<form action="/MyFirstWeb/boardselect.do" method="post">
+		<input type="hidden">
+		<input type="submit" value="돌아가기">
+	</form>
 </body>
 </html>
