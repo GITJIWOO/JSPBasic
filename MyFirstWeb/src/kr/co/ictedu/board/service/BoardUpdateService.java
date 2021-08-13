@@ -16,7 +16,6 @@ public class BoardUpdateService implements IBoardService {
 	// 오버라이딩된 메서드 내부 작성하
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		
 		// 세션 쓰는법
 		HttpSession session = null;
 		session = request.getSession();
